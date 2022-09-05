@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+  images: {
+    domains: ["countryflagsapi.com"],
+  },
+  output: 'standalone',
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

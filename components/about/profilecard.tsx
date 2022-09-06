@@ -4,7 +4,7 @@ import React from "react";
 
 export default function ProfileCard() {
   return (
-    <div className="h-fit max-w-4xl mx-auto mt-4 bg-[#ebebeb] dark:bg-slate-800 md:rounded-lg md:border border-black dark:border-slate-600 border-solid">
+    <>
       <div className="">
         <Image
           className="rounded-t-md"
@@ -13,7 +13,7 @@ export default function ProfileCard() {
           height={"224px"}
           alt="header picture"
         />
-        <div className="relative bottom-24 z-10 mx-4 -mb-24">
+        <div className="relative bottom-24 z-2 mx-4 -mb-24">
           <Image
             className="rounded-full border-2 border-white border-solid"
             src="/assets/image/profilephoto.jpeg"
@@ -78,6 +78,6 @@ export default function ProfileCard() {
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -49,13 +49,19 @@ const Home: NextPage = () => {
               Hello 👋,
               <br />
               You are {location.IPv4} from{" "}
-              <Image
-                layout="fixed"
-                height={"28px"}
-                width={"40px"}
-                src={dataEndpoints.flag + location.country_code?.toLowerCase()}
-                alt={location.country_name}
-              />
+              {location.country_code !== "unknown" ? (
+                <Image
+                  layout="fixed"
+                  height={"28px"}
+                  width={"40px"}
+                  src={
+                    dataEndpoints.flag + location.country_code?.toLowerCase()
+                  }
+                  alt={location.country_name}
+                />
+              ) : (
+                <span></span>
+              )}
             </h1>
             <h1 className="dark:text-slate-200">
               I&apos;m <span className={styles.text}>Syidan</span> is a{" "}

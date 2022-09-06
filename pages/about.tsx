@@ -1,11 +1,17 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Navbar from "../components/navbar";
-import ProfileCard from "../components/profilecard";
+import ProfileCard from "../components/about/profilecard";
+import AboutMe from "../components/about/aboutme";
+import Experience from "../components/about/experience";
+import Education from "../components/about/education";
+
+const CardTw =
+  "h-fit max-w-4xl mx-auto mt-4 bg-[#ebebeb] dark:bg-slate-800 md:rounded-lg border border-black dark:border-slate-600 dark:text-slate-200 border-solid";
 
 const About: NextPage = () => {
   return (
-    <div className="h-screen bg-[#ebebeb] dark:bg-slate-800">
+    <div className="h-full bg-[#ebebeb] dark:bg-slate-800">
       <Head>
         <title>rashoelfa | About</title>
         <meta
@@ -16,8 +22,18 @@ const About: NextPage = () => {
       </Head>
       <Navbar />
       <main>
-        <ProfileCard />
-        
+          <div className={CardTw}>
+            <ProfileCard />
+          </div>
+          <div className={CardTw}>
+            <AboutMe />
+          </div>
+          <div className={CardTw}>
+            <Experience />
+          </div>
+          <div className={CardTw}>
+            <Education />
+          </div>
       </main>
     </div>
   );

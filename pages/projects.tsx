@@ -13,9 +13,11 @@ const Projects: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-        <Navbar />
+      <Navbar />
       <main>
-        <h1>This is Projects Page</h1>
+        <div className="text-center max-w-7xl mx-auto">
+          <h1 className="text-xl font-bold my-4">Under Construction :)</h1>
+        </div>
       </main>
     </div>
   );

@@ -10,7 +10,7 @@ export default function Navbar() {
       <div className="sticky z-10 top-0 bg-[#ebebeb] dark:bg-slate-800 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-black dark:border-slate-600 firefox:bg-opacity-90">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center justify-around h-16">
-            <span className="text-2xl text-black dark:text-slate-200 font-semibold">rashoelfa</span>
+            <Link href="/"><span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer">rashoelfa</span></Link>
             <div className="flex space-x-4 text-lg text-black dark:text-slate-200">
               <Link href="/">Home</Link>
               <Link href="/about">About</Link>

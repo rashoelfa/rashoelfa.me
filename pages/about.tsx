@@ -22,6 +22,7 @@ const About: NextPage = () => {
       </Head>
       <Navbar />
       <main>
+        <div>
           <div className={CardTw}>
             <ProfileCard />
           </div>
@@ -34,6 +35,7 @@ const About: NextPage = () => {
           <div className={CardTw}>
             <Education />
           </div>
+        </div>
       </main>
     </div>
   );

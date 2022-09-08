@@ -13,11 +13,39 @@ const About: NextPage = () => {
   return (
     <div className="h-full 3xl:h-screen bg-[#ebebeb] dark:bg-slate-800">
       <Head>
-        <title>rashoelfa | About</title>
+      <title>Rasyidana Sulthan Fathansyah | About</title>
+        <meta
+          name="title"
+          content="Rasyidana Sulthan Fathansyah | Personal Website"
+        />
         <meta
           name="description"
-          content="Personal Website Rasyidana Sulthan Fathansyah"
+          content="Personal website that explain about the creator of this website :)"
         />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rashoelfa.me/" />
+        <meta
+          property="og:title"
+          content="Rasyidana Sulthan Fathansyah | Personal Website"
+        />
+        <meta
+          property="og:description"
+          content="Personal website that explain about the creator of this website :)"
+        />
+        <meta property="og:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://rashoelfa.me/" />
+        <meta
+          property="twitter:title"
+          content="Rasyidana Sulthan Fathansyah | Personal Website"
+        />
+        <meta
+          property="twitter:description"
+          content="Personal website that explain about the creator of this website :)"
+        />
+        <meta property="twitter:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />

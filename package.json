@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "next": "12.2.5",
+    "next-sitemap": "^3.1.22",
     "next-themes": "^0.2.0",
     "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",

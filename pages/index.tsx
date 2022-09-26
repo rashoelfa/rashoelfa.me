@@ -40,7 +40,7 @@ const Home: NextPage = () => {
         />
         <meta
           name="description"
-          content="Personal website that explain about the creator of this website :)"
+          content="Personal website that explain about Rasyidana Sulthan Fathansyah which the creator of this website :)"
         />
 
         <meta property="og:type" content="website" />

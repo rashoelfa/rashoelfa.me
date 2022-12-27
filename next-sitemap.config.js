@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 
 module.exports = {
-    siteUrl: 'https://rashoelfa.me',
+    siteUrl: 'https://www.rashoelfa.me',
     changefreq: 'daily',
     priority: 0.7,
     sitemapSize: 5000,

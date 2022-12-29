@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://rashoelfa.me
+Host: https://www.rashoelfa.me
 
 # Sitemaps
-Sitemap: https://rashoelfa.me/sitemap.xml
+Sitemap: https://www.rashoelfa.me/sitemap.xml

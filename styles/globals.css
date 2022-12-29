@@ -4,19 +4,19 @@
 
 @font-face {
   font-family: sfpro;
-  src: url(../public/assets/fonts/SFPRODISPLAYREGULAR.OTF);
+  src: url(../public/assets/font/SFPRODISPLAYREGULAR.OTF);
   font-weight: 400
 }
 
 @font-face {
   font-family: sfpro;
-  src: url(../public/assets/fonts/SFPRODISPLAYMEDIUM.OTF);
+  src: url(../public/assets/font/SFPRODISPLAYMEDIUM.OTF);
   font-weight: 500
 }
 
 @font-face {
   font-family: sfpro;
-  src: url(../public/assets/fonts/SFPRODISPLAYBOLD.OTF);
+  src: url(../public/assets/font/SFPRODISPLAYBOLD.OTF);
   font-weight: 700
 }
 

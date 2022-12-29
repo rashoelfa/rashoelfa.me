@@ -12,13 +12,15 @@
   "dependencies": {
     "@next/font": "^13.1.1",
     "axios": "^0.27.2",
+    "loader-utils": "^3.2.1",
     "next": "12.2.5",
     "next-sitemap": "^3.1.22",
     "next-themes": "^0.2.0",
     "nextjs-progressbar": "^0.0.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "^1.54.9"
+    "sass": "^1.54.9",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "@types/node": "18.7.14",

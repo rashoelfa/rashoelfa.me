@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* @font-face {
+@font-face {
   font-family: sfpro;
   src: url(../public/assets/fonts/SFPRODISPLAYREGULAR.OTF);
   font-weight: 400
@@ -18,7 +18,7 @@
   font-family: sfpro;
   src: url(../public/assets/fonts/SFPRODISPLAYBOLD.OTF);
   font-weight: 700
-} */
+}
 
 @layer base {
   html,

@@ -10,7 +10,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.1.1",
     "axios": "^0.27.2",
     "loader-utils": "^3.2.1",
     "next": "12.2.5",

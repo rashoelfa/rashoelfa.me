@@ -11,7 +11,7 @@ const CardTw =
 
 const About: NextPage = () => {
   return (
-    <div className="h-full xl:h-screen bg-[#ebebeb] dark:bg-slate-800">
+    <div className="h-screen bg-[#ebebeb] dark:bg-slate-800">
       <Head>
       <title>Rasyidana Sulthan Fathansyah | About</title>
         <meta

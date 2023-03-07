@@ -54,15 +54,6 @@ const About: NextPage = () => {
           <div className={CardTw}>
             <ProfileCard />
           </div>
-          <div className={CardTw}>
-            <AboutMe />
-          </div>
-          <div className={CardTw}>
-            <Experience />
-          </div>
-          <div className={CardTw}>
-            <Education />
-          </div>
         </div>
       </main>
     </div>

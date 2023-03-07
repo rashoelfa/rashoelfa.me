@@ -27,7 +27,7 @@ export default function ProfileCard() {
             Rasyidana Sulthan Fathansyah
           </h1>
           <p className="text-lg text-black dark:text-slate-200 px-4">
-            Fresh Graduate Informatics Engineering Student
+            Backend Developer
           </p>
         </div>
         <div className="mx-6 my-4">

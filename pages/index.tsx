@@ -80,7 +80,7 @@ const Home: NextPage = () => {
               )}
             </h1>
             <h1 className="dark:text-slate-200">
-              I&apos;m <span className={styles.text}>Syidan</span> is a{" "}
+              I&apos;m <span className={styles.text}>Rasyid</span> is a{" "}
               <span className={styles.secondText}>Developer</span> 👨‍💻
             </h1>
             <Link href="/about">

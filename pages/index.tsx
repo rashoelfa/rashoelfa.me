@@ -9,7 +9,7 @@ import Navbar from "../components/navbar";
 
 const dataEndpoints = {
   location: "https://geolocation-db.com/json/",
-  flag: "https://countryflagsapi.com/png/",
+  flag: "https://flagcdn.com/40x30/",
 };
 
 const Home: NextPage = () => {
@@ -69,9 +69,9 @@ const Home: NextPage = () => {
                   You are {location.IPv4} from{" "}
                   <Image
                     layout="fixed"
-                    height={"28px"}
+                    height={"30px"}
                     width={"40px"}
-                    src={dataEndpoints.flag + location.country_code?.toLowerCase()}
+                    src={dataEndpoints.flag + location.country_code?.toLowerCase() + ".png"}
                     alt={location.country_name}
                   />
                 </span>

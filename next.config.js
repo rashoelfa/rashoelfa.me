@@ -21,7 +21,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["https://flagcdn.com"],
+    domains: ["flagcdn.com"],
   },
   output: "standalone",
   webpack(config, { dev }) {

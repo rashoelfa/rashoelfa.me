@@ -22,7 +22,7 @@ const Home: NextPage = () => {
 
   //creating function to load ip address from the API
   const getData = async () => {
-    const res = await axios.get("https://geolocation-db.com/json/");
+    const res = await axios.get(dataEndpoints.location);
     setLocation(res.data);
   };
 

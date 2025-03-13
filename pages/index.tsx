@@ -78,7 +78,7 @@ const Home: NextPage = () => {
       <Navbar />
       <main className="h-4/5">
         <div className="h-full max-w-5xl flex mx-auto items-center justify-center">
-          <div className="text-xl md:text-2xl lg:text-4xl font-bold">
+          <div className="relative text-xl md:text-2xl lg:text-4xl font-bold">
             <h1 className="dark:text-slate-200">
               Hello 👋,
               <br />

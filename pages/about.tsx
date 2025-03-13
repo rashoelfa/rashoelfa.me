@@ -7,7 +7,7 @@ import Experience from "../components/about/experience";
 import Education from "../components/about/education";
 
 const CardTw =
-  "h-fit max-w-4xl mx-auto mt-4 bg-[#ebebeb] dark:bg-slate-800 md:rounded-lg border border-black dark:border-slate-600 dark:text-slate-200 border-solid";
+  "h-fit backdrop-filter backdrop-blur-lg bg-opacity-30 relative max-w-4xl mx-auto mt-4 bg-[#ebebeb] dark:bg-slate-800 md:rounded-lg border border-black dark:border-slate-600 dark:text-slate-200 border-solid";
 
 const About: NextPage = () => {
   return (

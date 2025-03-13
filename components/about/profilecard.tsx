@@ -30,12 +30,12 @@ export default function ProfileCard() {
             Backend Developer
           </p>
         </div>
-        <div className="mx-6 my-4">
+        <div className="mx-6 my-4 z-10">
           <Link href="/assets/files/cv.pdf" download>
             <a target="_blank" rel="noopener noreferrer">
               <button
                 type="button"
-                className="text-black bg-[#ebebeb] hover:bg-[#ebebeb]/90 border border-black dark:border-slate-600 border-solid  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#ebebeb]/30 mr-2 mb-2"
+                className="relative text-black bg-[#ebebeb] hover:bg-[#ebebeb]/90 border border-black dark:border-slate-600 border-solid  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#ebebeb]/30 mr-2 mb-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ export default function ProfileCard() {
             <a target="_blank" rel="noopener noreferrer">
               <button
                 type="button"
-                className="text-white bg-[#24292F] hover:bg-[#24292F]/90 border dark:border-slate-600 border-solid  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+                className="relative text-white bg-[#24292F] hover:bg-[#24292F]/90 border dark:border-slate-600 border-solid  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
               >
                 <svg
                   className="mr-2 -ml-1 w-4 h-4"
@@ -85,7 +85,7 @@ export default function ProfileCard() {
             <a target="_blank" rel="noopener noreferrer">
               <button
                 type="button"
-                className="text-white bg-[#0A66C2] hover:bg-[#0A66C2]/90 border dark:border-slate-600 border-solid  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#0A66C2]/30 mr-2 mb-2"
+                className="relative text-white bg-[#0A66C2] hover:bg-[#0A66C2]/90 border dark:border-slate-600 border-solid  font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#0A66C2]/30 mr-2 mb-2"
               >
                 <svg
                   className="mr-2 -ml-1 w-4 h-4 fill-current"

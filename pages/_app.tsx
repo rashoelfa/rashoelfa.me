@@ -6,7 +6,7 @@ import FluidCursor from "../components/fluid-cursor";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" defaultTheme="light">
       <FluidCursor />
       <NextNProgress color="#000" options={{ showSpinner: false }} />
       <Component {...pageProps}></Component>

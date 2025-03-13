@@ -4,8 +4,8 @@ import React from "react";
 
 export default function ProfileCard() {
   return (
-    <>
-      <div className="">
+    <div>
+      <div>
         <Image
           className="rounded-t-md"
           src="/assets/image/header.jpeg"
@@ -103,6 +103,6 @@ export default function ProfileCard() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }

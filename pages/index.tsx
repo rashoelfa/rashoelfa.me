@@ -34,7 +34,10 @@ const Home: NextPage = () => {
     <div className="h-screen bg-[#ebebeb] dark:bg-slate-800">
       <Head>
         <title>Rasyidana Sulthan Fathansyah</title>
-        <meta name="title" content="Rasyidana Sulthan Fathansyah | Personal Website" />
+        <meta
+          name="title"
+          content="Rasyidana Sulthan Fathansyah | Personal Website"
+        />
         <meta
           name="description"
           content="Personal website that explain about Rasyidana Sulthan Fathansyah which the creator of this website :)"
@@ -42,18 +45,33 @@ const Home: NextPage = () => {
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://rashoelfa.me/" />
-        <meta property="og:title" content="Rasyidana Sulthan Fathansyah | Personal Website" />
-        <meta property="og:description" content="Personal website that explain about the creator of this website :)" />
-        <meta property="og:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
+        <meta
+          property="og:title"
+          content="Rasyidana Sulthan Fathansyah | Personal Website"
+        />
+        <meta
+          property="og:description"
+          content="Personal website that explain about the creator of this website :)"
+        />
+        <meta
+          property="og:image"
+          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
+        />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://rashoelfa.me/" />
-        <meta property="twitter:title" content="Rasyidana Sulthan Fathansyah | Personal Website" />
+        <meta
+          property="twitter:title"
+          content="Rasyidana Sulthan Fathansyah | Personal Website"
+        />
         <meta
           property="twitter:description"
           content="Personal website that explain about the creator of this website :)"
         />
-        <meta property="twitter:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
+        <meta
+          property="twitter:image"
+          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -71,7 +89,11 @@ const Home: NextPage = () => {
                     layout="fixed"
                     height={"30px"}
                     width={"40px"}
-                    src={dataEndpoints.flag + location.country_code?.toLowerCase() + ".png"}
+                    src={
+                      dataEndpoints.flag +
+                      location.country_code?.toLowerCase() +
+                      ".png"
+                    }
                     alt={location.country_name}
                   />
                 </span>
@@ -85,7 +107,7 @@ const Home: NextPage = () => {
             </h1>
             <Link href="/about">
               <button className={styles.glow}>
-                <a>About Me</a>
+                <p>About Me</p>
               </button>
             </Link>
           </div>

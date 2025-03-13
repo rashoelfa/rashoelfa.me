@@ -13,7 +13,7 @@ const About: NextPage = () => {
   return (
     <div className="h-screen bg-[#ebebeb] dark:bg-slate-800">
       <Head>
-      <title>Rasyidana Sulthan Fathansyah | About</title>
+        <title>Rasyidana Sulthan Fathansyah | About</title>
         <meta
           name="title"
           content="Rasyidana Sulthan Fathansyah | Personal Website"
@@ -33,7 +33,10 @@ const About: NextPage = () => {
           property="og:description"
           content="Personal website that explain about the creator of this website :)"
         />
-        <meta property="og:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
+        <meta
+          property="og:image"
+          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
+        />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://rashoelfa.me/" />
@@ -45,7 +48,10 @@ const About: NextPage = () => {
           property="twitter:description"
           content="Personal website that explain about the creator of this website :)"
         />
-        <meta property="twitter:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
+        <meta
+          property="twitter:image"
+          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />

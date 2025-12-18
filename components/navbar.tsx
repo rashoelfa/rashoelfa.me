@@ -72,8 +72,8 @@ export default function Navbar() {
               <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer">
                 <Image
                   src="/favicon.ico"
-                  width={"25px"}
-                  height={"25px"}
+                  width={25}
+                  height={25}
                   alt="logo"
                 />
               </span>

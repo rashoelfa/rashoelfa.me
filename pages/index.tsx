@@ -8,22 +8,30 @@ import styles from "../styles/index.module.css";
 import Navbar from "../components/navbar";
 
 const dataEndpoints = {
-  location: "https://geolocation-db.com/json/",
+  location: "https://ipapi.co/json/",
   flag: "https://flagcdn.com/40x30/",
 };
 
 const Home: NextPage = () => {
   //creating IP state
   const [location, setLocation] = useState({
+    ip: "",
     IPv4: "",
     country_code: "unknown",
     country_name: "flag",
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   //creating function to load ip address from the API
   const getData = async () => {
-    const res = await axios.get(dataEndpoints.location);
-    setLocation(res.data);
+    try {
+      const res = await axios.get(dataEndpoints.location);
+      setLocation(res.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Failed to fetch location data:', error);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -82,23 +90,25 @@ const Home: NextPage = () => {
             <h1 className="dark:text-slate-200">
               Hello 👋,
               <br />
-              {location.country_code !== "unknown" ? (
+              {isLoading ? (
+                <span>Loading your location...</span>
+              ) : location.country_code !== "unknown" ? (
                 <span>
-                  You are {location.IPv4} from{" "}
+                  You are {location.ip} from{" "}
                   <Image
-                    layout="fixed"
-                    height={"30px"}
-                    width={"40px"}
+                    height={30}
+                    width={40}
                     src={
                       dataEndpoints.flag +
                       location.country_code?.toLowerCase() +
                       ".png"
                     }
                     alt={location.country_name}
+                    className="inline-block align-middle mx-1"
                   />
                 </span>
               ) : (
-                <span></span>
+                <span>Location unavailable</span>
               )}
             </h1>
             <h1 className="dark:text-slate-200">

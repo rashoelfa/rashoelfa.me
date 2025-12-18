@@ -9,16 +9,16 @@ export default function ProfileCard() {
         <Image
           className="rounded-t-md"
           src="/assets/image/header.jpeg"
-          width={"896px"}
-          height={"224px"}
+          width={896}
+          height={224}
           alt="header picture"
         />
         <div className="relative bottom-24 z-2 mx-4 -mb-24">
           <Image
             className="rounded-full border-2 border-white border-solid"
             src="/assets/image/profilephoto.jpeg"
-            width={"150px"}
-            height={"150px"}
+            width={150}
+            height={150}
             alt="profile picture"
           />
         </div>
@@ -31,7 +31,7 @@ export default function ProfileCard() {
           </p>
         </div>
         <div className="mx-6 my-4 z-10">
-          <Link href="/assets/files/cv.pdf" download>
+          <Link href="/assets/files/cv.pdf" download legacyBehavior>
             <a target="_blank" rel="noopener noreferrer">
               <button
                 type="button"
@@ -56,7 +56,7 @@ export default function ProfileCard() {
             </a>
           </Link>
 
-          <Link href="https://github.com/rashoelfa">
+          <Link href="https://github.com/rashoelfa" legacyBehavior>
             <a target="_blank" rel="noopener noreferrer">
               <button
                 type="button"
@@ -81,7 +81,7 @@ export default function ProfileCard() {
             </a>
           </Link>
 
-          <Link href="https://www.linkedin.com/in/rasyidana/">
+          <Link href="https://www.linkedin.com/in/rasyidana/" legacyBehavior>
             <a target="_blank" rel="noopener noreferrer">
               <button
                 type="button"

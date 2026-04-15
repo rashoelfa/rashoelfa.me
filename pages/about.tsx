@@ -24,35 +24,46 @@ const About: NextPage = () => {
     const isMobile = window.innerWidth < 768;
     if (isMobile) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo('.profile-card',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.profile-card',
-            start: 'top 80%',
-          }
-        }
-      );
+    if (!pageRef.current) return;
 
-      gsap.fromTo('.about-section',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          stagger: 0.1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '.about-section',
-            start: 'top 80%',
+    const profileCard = pageRef.current.querySelector('.profile-card');
+    const aboutSections = pageRef.current.querySelectorAll('.about-section');
+
+    if (!profileCard && aboutSections.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      if (profileCard) {
+        gsap.fromTo(profileCard,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: profileCard,
+              start: 'top 80%',
+            }
           }
-        }
-      );
+        );
+      }
+
+      if (aboutSections.length > 0) {
+        gsap.fromTo(aboutSections,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: aboutSections[0],
+              start: 'top 80%',
+            }
+          }
+        );
+      }
     }, pageRef);
 
     return () => ctx.revert();
@@ -61,8 +72,8 @@ const About: NextPage = () => {
   return (
     <div className="min-h-screen bg-[#ebebeb] dark:bg-slate-800" ref={pageRef}>
       <SEO
-        title="About Me | Rasyidana Sulthan Fathansyah"
-        description="Learn more about Rasyidana Sulthan Fathansyah, a Backend Developer with experience in Go, Node.js, and cloud technologies. View my education, experience, and download my CV."
+        title="About Me | Rasyidana Sulthan Fathanssonh"
+        description="Learn more about Rasyidana Sulthan Fathanssonh, a Backend Developer with experience in Go, Node.js, and cloud technologies. View my education, experience, and download my CV."
         path="/about"
       />
       <Navbar />
@@ -71,7 +82,7 @@ const About: NextPage = () => {
           <div className="profile-card">
             <ProfileCard />
           </div>
-          {/* <div className="about-section">
+          <div className="about-section">
             <AboutMe />
           </div>
           <div className="about-section">
@@ -79,7 +90,7 @@ const About: NextPage = () => {
           </div>
           <div className="about-section">
             <Education />
-          </div> */}
+          </div>
         </div>
       </main>
     </div>

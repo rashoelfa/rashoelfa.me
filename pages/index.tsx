@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import useSWR from "swr";
 import styles from "../styles/index.module.css";
 import Navbar from "../components/navbar";
 import SEO from "../components/SEO";
 import gsap from "gsap";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const dataEndpoints = {
   location: "https://ipinfo.io/geo",
@@ -14,11 +16,7 @@ const dataEndpoints = {
 };
 
 const Home: NextPage = () => {
-  const [location, setLocation] = useState({
-    ip: "",
-    country: "flag",
-  });
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: location, isLoading } = useSWR(dataEndpoints.location, fetcher);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,21 +45,7 @@ const Home: NextPage = () => {
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.get(dataEndpoints.location);
-        setLocation(res.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Failed to fetch location data:', error);
-        setIsLoading(false);
-      }
-    };
-    getData();
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

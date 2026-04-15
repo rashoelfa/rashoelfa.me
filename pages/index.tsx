@@ -9,7 +9,7 @@ import SEO from "../components/SEO";
 import gsap from "gsap";
 
 const dataEndpoints = {
-  location: "http://ip-api.com/json",
+  location: "https://ip-api.com/json",
   flag: "https://flagcdn.com/40x30/",
 };
 

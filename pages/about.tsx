@@ -59,18 +59,27 @@ const About: NextPage = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-[#ebebeb] dark:bg-slate-800" ref={pageRef}>
+    <div className="min-h-screen bg-[#ebebeb] dark:bg-slate-800" ref={pageRef}>
       <SEO
         title="About Me | Rasyidana Sulthan Fathansyah"
         description="Learn more about Rasyidana Sulthan Fathansyah, a Backend Developer with experience in Go, Node.js, and cloud technologies. View my education, experience, and download my CV."
         path="/about"
       />
       <Navbar />
-      <main>
-        <div>
-          <div className={CardTw}>
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        <div className={CardTw}>
+          <div className="profile-card">
             <ProfileCard />
           </div>
+          {/* <div className="about-section">
+            <AboutMe />
+          </div>
+          <div className="about-section">
+            <Experience />
+          </div>
+          <div className="about-section">
+            <Education />
+          </div> */}
         </div>
       </main>
     </div>

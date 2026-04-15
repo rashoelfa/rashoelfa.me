@@ -72,8 +72,8 @@ const About: NextPage = () => {
   return (
     <div className="min-h-screen bg-[#ebebeb] dark:bg-slate-800" ref={pageRef}>
       <SEO
-        title="About Me | Rasyidana Sulthan Fathanssonh"
-        description="Learn more about Rasyidana Sulthan Fathanssonh, a Backend Developer with experience in Go, Node.js, and cloud technologies. View my education, experience, and download my CV."
+        title="About Me | Rasyidana Sulthan Fathansyah"
+        description="Learn more about Rasyidana Sulthan Fathansyah, a Backend Developer with experience in Go, Node.js, and cloud technologies. View my education, experience, and download my CV."
         path="/about"
       />
       <Navbar />
@@ -82,7 +82,7 @@ const About: NextPage = () => {
           <div className="profile-card">
             <ProfileCard />
           </div>
-          <div className="about-section">
+          {/* <div className="about-section">
             <AboutMe />
           </div>
           <div className="about-section">
@@ -90,7 +90,7 @@ const About: NextPage = () => {
           </div>
           <div className="about-section">
             <Education />
-          </div>
+          </div> */}
         </div>
       </main>
     </div>

@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: sfpro;
-  src: url(/assets/font/SFPRODISPLAYREGULAR.OTF) format("opentype");
+  src: url(../public/assets/font/SFPRODISPLAYREGULAR.OTF);
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: sfpro;
-  src: url(/assets/font/SFPRODISPLAYMEDIUM.OTF) format("opentype");
+  src: url(../public/assets/font/SFPRODISPLAYMEDIUM.OTF);
   font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
   font-family: sfpro;
-  src: url(/assets/font/SFPRODISPLAYBOLD.OTF) format("opentetype");
+  src: url(../public/assets/font/SFPRODISPLAYBOLD.OTF);
   font-weight: 700;
   font-display: swap;
 }

@@ -1,30 +1,70 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
+import gsap from "gsap";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    const links = navRef.current?.querySelectorAll('.nav-link');
+    if (!links) return;
+
+    links.forEach(link => {
+      const el = link as HTMLElement;
+
+      el.addEventListener('mouseenter', () => {
+        gsap.to(el, {
+          scale: 1.05,
+          duration: 0.15,
+          ease: 'power2.out'
+        });
+      });
+
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, {
+          scale: 1,
+          duration: 0.15,
+          ease: 'power2.out'
+        });
+      });
+    });
+  }, []);
 
   const toggleNav = () => {
     setIsNavOpen((current) => !current);
   };
+
   return (
     <>
-      <div className="sticky z-10 top-0 bg-[#ebebeb] dark:bg-slate-800 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-black dark:border-slate-600 firefox:bg-opacity-90">
+      <div
+        ref={navRef}
+        className="sticky z-10 top-0 bg-[#ebebeb] dark:bg-slate-800 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-black dark:border-slate-600 firefox:bg-opacity-90"
+      >
         <div className="max-w-5xl hidden md:block mx-auto px-4">
           <div className="flex items-center justify-around h-16">
             <Link href="/">
-              <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer">
+              <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer nav-link">
                 rashoelfa
               </span>
             </Link>
             <div className="flex space-x-4 text-lg text-black dark:text-slate-200">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/projects">Projects</Link>
+              <Link href="/">
+                <span className="nav-link cursor-pointer">Home</span>
+              </Link>
+              <Link href="/about">
+                <span className="nav-link cursor-pointer">About</span>
+              </Link>
+              <Link href="/projects">
+                <span className="nav-link cursor-pointer">Projects</span>
+              </Link>
             </div>
             <button
               aria-label="Toggle Dark Mode"
@@ -69,7 +109,7 @@ export default function Navbar() {
         <div className="max-w-5xl block md:hidden mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/">
-              <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer">
+              <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer nav-link">
                 <Image
                   src="/favicon.ico"
                   width={25}
@@ -149,9 +189,15 @@ export default function Navbar() {
         </div>
         {isNavOpen ? (
           <div className="flex flex-col absolute w-full text-black dark:text-slate-200 md:hidden gap-4 text-center py-4 text-2xl border-y border-black dark:border-slate-600 bg-[#ebebeb] dark:bg-slate-800">
-            <Link href="/">Home</Link>
-            <Link href="/about">About</Link>
-            <Link href="/projects">Projects</Link>
+            <Link href="/">
+              <span className="nav-link">Home</span>
+            </Link>
+            <Link href="/about">
+              <span className="nav-link">About</span>
+            </Link>
+            <Link href="/projects">
+              <span className="nav-link">Projects</span>
+            </Link>
           </div>
         ) : (
           <span className="hidden"></span>

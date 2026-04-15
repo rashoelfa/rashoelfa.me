@@ -91,11 +91,11 @@ export default function Navbar() {
             <button
               aria-label="Toggle Dark Mode"
               type="button"
-              className="p-3 h-12 w-12 order-2 md:order-3"
+              className={`p-3 h-12 w-12 order-2 md:order-3 ${!mounted ? "opacity-0" : ""}`}
               onClick={toggleTheme}
               suppressHydrationWarning
             >
-              {mounted ? (resolvedTheme === "light" ? sunIcon : moonIcon) : moonIcon}
+              {mounted && resolvedTheme === "light" ? sunIcon : moonIcon}
             </button>
           </div>
         </div>
@@ -114,11 +114,11 @@ export default function Navbar() {
             <button
               aria-label="Toggle Dark Mode"
               type="button"
-              className="p-3 h-12 w-12"
+              className={`p-3 h-12 w-12 ${!mounted ? "opacity-0" : ""}`}
               onClick={toggleTheme}
               suppressHydrationWarning
             >
-              {mounted ? (resolvedTheme === "light" ? sunIcon : moonIcon) : moonIcon}
+              {mounted && resolvedTheme === "light" ? sunIcon : moonIcon}
             </button>
             <button onClick={toggleNav}>
               {isNavOpen ? (

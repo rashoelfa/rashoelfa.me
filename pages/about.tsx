@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import { useEffect, useRef } from "react";
 import Navbar from "../components/navbar";
 import ProfileCard from "../components/about/profilecard";
 import AboutMe from "../components/about/aboutme";
 import Experience from "../components/about/experience";
 import Education from "../components/about/education";
+import SEO from "../components/SEO";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -60,48 +60,11 @@ const About: NextPage = () => {
 
   return (
     <div className="h-screen bg-[#ebebeb] dark:bg-slate-800" ref={pageRef}>
-      <Head>
-        <title>Rasyidana Sulthan Fathanssonh | About</title>
-        <meta
-          name="title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          name="description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rashoelfa.me/" />
-        <meta
-          property="og:title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          property="og:description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-        <meta
-          property="og:image"
-          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
-        />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://rashoelfa.me/" />
-        <meta
-          property="twitter:title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          property="twitter:description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-        <meta
-          property="twitter:image"
-          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SEO
+        title="About Me | Rasyidana Sulthan Fathansyah"
+        description="Learn more about Rasyidana Sulthan Fathansyah, a Backend Developer with experience in Go, Node.js, and cloud technologies. View my education, experience, and download my CV."
+        path="/about"
+      />
       <Navbar />
       <main>
         <div>

@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import axios from "axios";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/index.module.css";
 import Navbar from "../components/navbar";
+import SEO from "../components/SEO";
 import gsap from "gsap";
 
 const dataEndpoints = {
@@ -83,48 +83,11 @@ const Home: NextPage = () => {
 
   return (
     <div className="h-screen bg-[#ebebeb] dark:bg-slate-800">
-      <Head>
-        <title>Rasyidana Sulthan Fathanssonh</title>
-        <meta
-          name="title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          name="description"
-          content="Personal website that explain about Rasyidana Sulthan Fathanssonh which the creator of this website :)"
-        />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rashoelfa.me/" />
-        <meta
-          property="og:title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          property="og:description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-        <meta
-          property="og:image"
-          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
-        />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://rashoelfa.me/" />
-        <meta
-          property="twitter:title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          property="twitter:description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-        <meta
-          property="twitter:image"
-          content="https://rashoelfa.me/assets/image/meta-header.jpeg"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SEO
+        title="Rasyidana Sulthan Fathansyah | Backend Developer"
+        description="Personal website of Rasyidana Sulthan Fathansyah, a Backend Developer specializing in Go and Node.js. Learn more about my projects and experience."
+        path="/"
+      />
 
       <Navbar />
       <main className="h-4/5" ref={heroRef}>

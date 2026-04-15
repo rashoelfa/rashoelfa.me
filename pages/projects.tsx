@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import { useEffect, useRef } from "react";
 import Navbar from "../components/navbar";
+import SEO from "../components/SEO";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -48,42 +48,11 @@ const Projects: NextPage = () => {
 
   return (
     <div className="h-screen bg-[#ebebeb] dark:bg-slate-800" ref={pageRef}>
-      <Head>
-      <title>Rasyidana Sulthan Fathanssonh | Projects</title>
-        <meta
-          name="title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          name="description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rashoelfa.me/" />
-        <meta
-          property="og:title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          property="og:description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-        <meta property="og:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://rashoelfa.me/" />
-        <meta
-          property="twitter:title"
-          content="Rasyidana Sulthan Fathanssonh | Personal Website"
-        />
-        <meta
-          property="twitter:description"
-          content="Personal website that explain about the creator of this website :)"
-        />
-        <meta property="twitter:image" content="https://rashoelfa.me/assets/image/meta-header.jpeg" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <SEO
+        title="Projects | Rasyidana Sulthan Fathansyah"
+        description="Explore my coding projects and portfolio. I'm a Backend Developer working with Go, Node.js, and various cloud technologies."
+        path="/projects"
+      />
       <Navbar />
       <main>
         <div className="text-center max-w-7xl mx-auto">

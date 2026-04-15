@@ -9,15 +9,13 @@ import SEO from "../components/SEO";
 import gsap from "gsap";
 
 const dataEndpoints = {
-  location: "https://ip-api.com/json",
+  location: "https://ipinfo.io/geo",
   flag: "https://flagcdn.com/40x30/",
 };
 
 const Home: NextPage = () => {
   const [location, setLocation] = useState({
-    query: "",
     ip: "",
-    countryCode: "unknown",
     country: "flag",
   });
   const [isLoading, setIsLoading] = useState(true);
@@ -98,15 +96,15 @@ const Home: NextPage = () => {
               <br />
               {isLoading ? (
                 <span className="hero-location">Loading your location...</span>
-              ) : location.countryCode !== "unknown" ? (
+              ) : location.country !== "flag" ? (
                 <span className="hero-location">
-                  You are {location.query} and from{" "}
+                  You are {location.ip} and from{" "}
                   <Image
                     height={30}
                     width={40}
                     src={
                       dataEndpoints.flag +
-                      location.countryCode?.toLowerCase() +
+                      location.country.toLowerCase() +
                       ".png"
                     }
                     alt={location.country}

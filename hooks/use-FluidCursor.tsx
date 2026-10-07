@@ -17,7 +17,7 @@ const useFluidCursor = () => {
     SPLAT_RADIUS: 0.2,
     SPLAT_FORCE: 6000,
     SHADING: true,
-    COLOR_UPDATE_SPEED: 2,
+    COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
     BACK_COLOR: { r: 0.5, g: 0, b: 0 },
     TRANSPARENT: true,
@@ -1232,9 +1232,8 @@ const useFluidCursor = () => {
     return delta;
   }
 
-  // Single accent hue (matches --accent) with slight jitter so the trail still has depth.
   function generateColor() {
-    let c = HSVtoRGB(0.055 + (Math.random() - 0.5) * 0.04, 0.8, 1.0);
+    let c = HSVtoRGB(Math.random(), 1.0, 1.0);
     c.r *= 0.15;
     c.g *= 0.15;
     c.b *= 0.15;

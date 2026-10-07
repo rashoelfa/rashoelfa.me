@@ -26,21 +26,11 @@ const Home: NextPage = () => {
         path="/"
       />
 
-      <p data-reveal className="mb-6 font-mono text-sm text-muted">
-        Backend developer · Go &amp; Node.js
-      </p>
-
       <h1 className="text-[clamp(3rem,9vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
         <Line>Hello, I&apos;m</Line>
-        <Line>
-          <span className="text-accent">Rasyid</span>,
-        </Line>
+        <Line>Rasyid,</Line>
         <Line className="text-muted">the developer.</Line>
       </h1>
-
-      <p data-reveal className="mt-8 max-w-[52ch] text-lg leading-relaxed text-muted">
-        I build backend services with Go, Node.js and cloud infrastructure.
-      </p>
 
       <div data-reveal className="mt-10 flex flex-wrap items-center gap-6">
         <span ref={ctaRef} className="inline-block">
@@ -55,7 +45,7 @@ const Home: NextPage = () => {
           href="https://github.com/rashoelfa"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-medium underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
+          className="text-sm font-medium underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
         >
           GitHub ↗
         </a>

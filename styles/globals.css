@@ -3,21 +3,19 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-  /* One warm gray family + one accent. Values are RGB channels for Tailwind's <alpha-value>. */
+  /* Monochrome neutral grays. Values are RGB channels for Tailwind's <alpha-value>. */
   :root {
-    --paper: 244 242 238;
-    --ink: 28 26 23;
-    --muted: 107 102 94;
-    --line: 217 212 203;
-    --accent: 182 74 26;
+    --paper: 245 245 245;
+    --ink: 23 23 23;
+    --muted: 110 110 110;
+    --line: 222 222 222;
   }
 
   .dark {
-    --paper: 20 19 17;
-    --ink: 236 232 225;
-    --muted: 154 148 138;
-    --line: 46 43 39;
-    --accent: 232 121 66;
+    --paper: 17 17 17;
+    --ink: 237 237 237;
+    --muted: 150 150 150;
+    --line: 44 44 44;
   }
 
   html {
@@ -28,7 +26,7 @@
   }
 
   ::selection {
-    background: rgb(var(--accent) / 0.25);
+    background: rgb(var(--ink) / 0.15);
   }
 
   h1,
@@ -38,7 +36,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid rgb(var(--accent));
+    outline: 2px solid rgb(var(--ink));
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -50,7 +48,7 @@
   }
 
   .btn-primary {
-    @apply btn bg-accent text-paper hover:bg-ink;
+    @apply btn bg-ink text-paper hover:bg-ink/80;
   }
 
   .btn-ghost {

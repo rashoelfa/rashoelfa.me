@@ -43,7 +43,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-20 border-b border-line bg-paper/70 backdrop-blur-lg">
       <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="text-lg font-semibold tracking-tight">
-          rashoelfa<span className="text-accent">.</span>
+          rashoelfa<span className="text-muted">.</span>
         </Link>
 
         <div className="flex items-center gap-1">
@@ -66,7 +66,7 @@ export default function Navbar() {
             <span
               ref={indicatorRef}
               aria-hidden
-              className="pointer-events-none absolute bottom-1 left-0 h-px bg-accent transition-[transform,width,opacity] duration-500 ease-out-expo"
+              className="pointer-events-none absolute bottom-1 left-0 h-px bg-ink transition-[transform,width,opacity] duration-500 ease-out-expo"
             />
           </ul>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
                 href={l.href}
                 onClick={() => setOpen(false)}
                 aria-current={pathname === l.href ? "page" : undefined}
-                className={`block py-3 text-3xl font-medium tracking-tight ${pathname === l.href ? "text-accent" : ""}`}
+                className={`block py-3 text-3xl font-medium tracking-tight ${pathname === l.href ? "" : "text-muted"}`}
               >
                 {l.label}
               </Link>

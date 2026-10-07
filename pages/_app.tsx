@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
       <div className={`${geist.variable} flex min-h-dvh flex-col font-sans`}>
         <FluidCursor />
-        <NextNProgress color="rgb(var(--accent))" height={2} options={{ showSpinner: false }} />
+        <NextNProgress color="rgb(var(--ink))" height={2} options={{ showSpinner: false }} />
         <Navbar />
         <Component {...pageProps} />
       </div>

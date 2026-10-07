@@ -5,7 +5,7 @@ Personal website of Rasyidana Sulthan Fathansyah - Backend Developer specializin
 ## Tech Stack
 
 - **Framework**: Next.js 16 with TypeScript
-- **Styling**: Tailwind CSS with theme tokens (`--paper`, `--ink`, `--muted`, `--line`, `--accent`) in `styles/globals.css`
+- **Styling**: Tailwind CSS with monochrome theme tokens (`--paper`, `--ink`, `--muted`, `--line`) in `styles/globals.css`
 - **Font**: Geist via `next/font`
 - **Animation**: GSAP (masked line reveals, scroll reveals, magnetic CTA) + WebGL fluid cursor
 - **Theme**: next-themes for dark/light mode
@@ -15,7 +15,7 @@ Personal website of Rasyidana Sulthan Fathansyah - Backend Developer specializin
 - Dark/Light theme toggle
 - Masked hero reveal and scroll-triggered fade-ups (`useReveal`, no pre-hydration flash)
 - Sliding active-link indicator and animated mobile menu
-- Fluid cursor trail in the accent color; pauses when idle, off for touch and reduced motion
+- Rainbow fluid cursor trail; pauses when idle, off for touch and reduced motion
 - All motion respects `prefers-reduced-motion`
 
 ## Getting Started

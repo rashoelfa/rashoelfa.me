@@ -14,7 +14,6 @@ module.exports = {
         ink: "rgb(var(--ink) / <alpha-value>)",
         muted: "rgb(var(--muted) / <alpha-value>)",
         line: "rgb(var(--line) / <alpha-value>)",
-        accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-geist)", "system-ui", "sans-serif"],

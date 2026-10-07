@@ -5,18 +5,18 @@ Personal website of Rasyidana Sulthan Fathansyah - Backend Developer specializin
 ## Tech Stack
 
 - **Framework**: Next.js 16 with TypeScript
-- **Styling**: Tailwind CSS + custom CSS modules
-- **Animation**: GSAP for page transitions and scroll effects
+- **Styling**: Tailwind CSS with theme tokens (`--paper`, `--ink`, `--muted`, `--line`, `--accent`) in `styles/globals.css`
+- **Font**: Geist via `next/font`
+- **Animation**: GSAP (masked line reveals, scroll reveals, magnetic CTA) + WebGL fluid cursor
 - **Theme**: next-themes for dark/light mode
-- **IP Geolocation**: ipinfo.io
 
 ## Features
 
 - Dark/Light theme toggle
-- Animated page transitions
-- Scroll-triggered animations
-- Interactive navbar hover effects
-- Visitor IP geolocation with country flag
+- Masked hero reveal and scroll-triggered fade-ups (`useReveal`, no pre-hydration flash)
+- Sliding active-link indicator and animated mobile menu
+- Fluid cursor trail in the accent color; pauses when idle, off for touch and reduced motion
+- All motion respects `prefers-reduced-motion`
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ pnpm lint     # Run ESLint
 ├── components/     # React components (Navbar, SEO, etc.)
 ├── hooks/          # Custom React hooks (use-gsap, etc.)
 ├── pages/          # Next.js pages (index, about, projects)
-├── styles/         # CSS modules and global styles
+├── styles/         # Global styles and theme tokens
 ├── public/         # Static assets
 └── docs/           # Design specs and plans
 ```

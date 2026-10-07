@@ -1,117 +1,66 @@
 import type { NextPage } from "next";
-import Image from "next/image";
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import useSWR from "swr";
-import styles from "../styles/index.module.css";
-import Navbar from "../components/navbar";
 import SEO from "../components/SEO";
-import gsap from "gsap";
+import { useMagnetic, useReveal } from "../hooks/use-gsap";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-const dataEndpoints = {
-  location: "https://ipinfo.io/geo",
-  flag: "https://flagcdn.com/40x30/",
-};
+// Inner span slides up from below; the outer span's overflow clip makes it read as a mask.
+// Padding/negative margin keeps descenders from being clipped.
+const Line = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
+  <span className="-mb-[0.12em] block overflow-hidden pb-[0.12em]">
+    <span data-reveal-line className={`block ${className}`}>
+      {children}
+    </span>
+  </span>
+);
 
 const Home: NextPage = () => {
-  const { data: location, isLoading } = useSWR(dataEndpoints.location, fetcher);
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
-
-      tl.fromTo('.hero-text',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.1 }
-      );
-
-      tl.fromTo('.hero-location',
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4 },
-        '+=0.4'
-      );
-
-      tl.fromTo('.hero-btn',
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.3 },
-        '-=0.2'
-      );
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, [location]);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const btn = document.querySelector('.glow-btn');
-    if (!btn) return;
-
-    btn.addEventListener('mouseenter', () => {
-      gsap.to(btn, { scale: 1.02, duration: 0.15 });
-    });
-
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { scale: 1, duration: 0.15 });
-    });
-  }, [isLoading]);
+  const ref = useReveal<HTMLElement>();
+  const ctaRef = useMagnetic<HTMLSpanElement>();
 
   return (
-    <div className="h-screen bg-[#ebebeb] dark:bg-slate-800">
+    <main ref={ref} className="mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-24">
       <SEO
         title="Rasyidana Sulthan Fathansyah | Backend Developer"
         description="Personal website of Rasyidana Sulthan Fathansyah, a Backend Developer specializing in Go and Node.js. Learn more about my projects and experience."
         path="/"
       />
 
-      <Navbar />
-      <main className="h-4/5" ref={heroRef}>
-        <div className="h-full max-w-5xl flex mx-auto items-center justify-center">
-          <div className="relative text-xl md:text-2xl lg:text-4xl font-bold">
-            <h1 className="hero-text dark:text-slate-200">
-              Hello &#128075;,
-              <br />
-              {isLoading ? (
-                <span className="hero-location">Loading your location...</span>
-              ) : location.country !== "flag" ? (
-                <span className="hero-location">
-                  You are {location.ip} and from{" "}
-                  <Image
-                    height={30}
-                    width={40}
-                    src={
-                      dataEndpoints.flag +
-                      location.country.toLowerCase() +
-                      ".png"
-                    }
-                    alt={location.country}
-                    className="inline-block align-middle mx-1"
-                  />
-                </span>
-              ) : (
-                <span className="hero-location">You are unknown 😕</span>
-              )}
-            </h1>
-            <h1 className="hero-text dark:text-slate-200">
-              I&apos;m <span className={styles.text}>Rasyid</span> The{" "}
-              <span className={styles.secondText}>Developer</span> &#128187;
-            </h1>
-            <Link href="/about">
-              <button className={`${styles.glow} glow-btn hero-btn`}>
-                <p>About Me</p>
-              </button>
-            </Link>
-          </div>
-        </div>
-      </main>
-    </div>
+      <p data-reveal className="mb-6 font-mono text-sm text-muted">
+        Backend developer · Go &amp; Node.js
+      </p>
+
+      <h1 className="text-[clamp(3rem,9vw,7.5rem)] font-semibold leading-[0.95] tracking-[-0.045em]">
+        <Line>Hello, I&apos;m</Line>
+        <Line>
+          <span className="text-accent">Rasyid</span>,
+        </Line>
+        <Line className="text-muted">the developer.</Line>
+      </h1>
+
+      <p data-reveal className="mt-8 max-w-[52ch] text-lg leading-relaxed text-muted">
+        I build backend services with Go, Node.js and cloud infrastructure.
+      </p>
+
+      <div data-reveal className="mt-10 flex flex-wrap items-center gap-6">
+        <span ref={ctaRef} className="inline-block">
+          <Link href="/about" className="btn-primary group">
+            About me
+            <span aria-hidden className="transition-transform duration-300 ease-out-expo group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </span>
+        <a
+          href="https://github.com/rashoelfa"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium underline decoration-line underline-offset-4 transition-colors hover:decoration-accent"
+        >
+          GitHub ↗
+        </a>
+      </div>
+    </main>
   );
 };
 

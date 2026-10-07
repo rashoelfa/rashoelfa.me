@@ -1,172 +1,138 @@
-import React, { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useState } from "react";
-import Image from "next/image";
-import gsap from "gsap";
+import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
+import { useLayoutEffect, useRef, useState } from "react";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+];
 
 export default function Navbar() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
-  const [isNavOpen, setIsNavOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
+  const { pathname } = useRouter();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const indicatorRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Slide the underline to the hovered link, falling back to the current page.
+  const target = hovered ?? pathname;
+  useLayoutEffect(() => {
+    const list = listRef.current;
+    const indicator = indicatorRef.current;
+    if (!list || !indicator) return;
 
-  const toggleTheme = () => {
-    if (!mounted) return;
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  };
+    const place = () => {
+      const el = list.querySelector<HTMLElement>(`[data-href="${target}"]`);
+      indicator.style.opacity = el ? "1" : "0";
+      if (!el) return;
+      indicator.style.width = `${el.offsetWidth - 24}px`;
+      indicator.style.transform = `translateX(${el.offsetLeft + 12}px)`;
+    };
+    place();
 
-  const sunIcon = (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-    </svg>
-  );
-
-  const moonIcon = (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-    </svg>
-  );
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const links = navRef.current?.querySelectorAll('.nav-link');
-    if (!links) return;
-
-    links.forEach(link => {
-      const el = link as HTMLElement;
-
-      el.addEventListener('mouseenter', () => {
-        gsap.to(el, {
-          scale: 1.05,
-          duration: 0.15,
-          ease: 'power2.out'
-        });
-      });
-
-      el.addEventListener('mouseleave', () => {
-        gsap.to(el, {
-          scale: 1,
-          duration: 0.15,
-          ease: 'power2.out'
-        });
-      });
-    });
-  }, []);
-
-  const toggleNav = () => {
-    setIsNavOpen((current) => !current);
-  };
+    // Re-measure when the list resizes (web font swap, breakpoint change).
+    const ro = new ResizeObserver(place);
+    ro.observe(list);
+    return () => ro.disconnect();
+  }, [target]);
 
   return (
-    <>
+    <header className="sticky top-0 z-20 border-b border-line bg-paper/70 backdrop-blur-lg">
+      <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <Link href="/" className="text-lg font-semibold tracking-tight">
+          rashoelfa<span className="text-accent">.</span>
+        </Link>
+
+        <div className="flex items-center gap-1">
+          <ul ref={listRef} onMouseLeave={() => setHovered(null)} className="relative hidden md:flex">
+            {links.map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  data-href={l.href}
+                  aria-current={pathname === l.href ? "page" : undefined}
+                  onMouseEnter={() => setHovered(l.href)}
+                  className={`block px-3 py-2 text-sm transition-colors ${
+                    pathname === l.href ? "text-ink" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+            <span
+              ref={indicatorRef}
+              aria-hidden
+              className="pointer-events-none absolute bottom-1 left-0 h-px bg-accent transition-[transform,width,opacity] duration-500 ease-out-expo"
+            />
+          </ul>
+
+          <button
+            type="button"
+            aria-label="Toggle dark mode"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            className="grid h-10 w-10 place-items-center rounded-full text-muted transition-colors hover:text-ink active:scale-95"
+          >
+            {/* Visibility via the `dark` class next-themes sets before paint, so no mount check needed. */}
+            <svg className="h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+            <svg className="hidden h-5 w-5 dark:block" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
+            className="relative h-10 w-10 md:hidden"
+          >
+            <span
+              className={`absolute left-1/2 top-1/2 h-px w-5 -translate-x-1/2 bg-ink transition-transform duration-300 ease-out-expo ${
+                open ? "rotate-45" : "-translate-y-[4px]"
+              }`}
+            />
+            <span
+              className={`absolute left-1/2 top-1/2 h-px w-5 -translate-x-1/2 bg-ink transition-transform duration-300 ease-out-expo ${
+                open ? "-rotate-45" : "translate-y-[4px]"
+              }`}
+            />
+          </button>
+        </div>
+      </nav>
+
       <div
-        ref={navRef}
-        className="sticky z-10 top-0 bg-[#ebebeb] dark:bg-slate-800 backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-black dark:border-slate-600 firefox:bg-opacity-90"
+        id="mobile-menu"
+        inert={!open}
+        className={`absolute inset-x-0 top-full border-b border-line bg-paper transition duration-300 ease-out-expo md:hidden ${
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
+        }`}
       >
-        <div className="max-w-5xl hidden md:block mx-auto px-4">
-          <div className="flex items-center justify-around h-16">
-            <Link href="/">
-              <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer nav-link">
-                rashoelfa
-              </span>
-            </Link>
-            <div className="flex space-x-4 text-lg text-black dark:text-slate-200">
-              <Link href="/">
-                <span className="nav-link cursor-pointer">Home</span>
-              </Link>
-              <Link href="/about">
-                <span className="nav-link cursor-pointer">About</span>
-              </Link>
-              <Link href="/projects">
-                <span className="nav-link cursor-pointer">Projects</span>
-              </Link>
-            </div>
-            <button
-              aria-label="Toggle Dark Mode"
-              type="button"
-              className={`p-3 h-12 w-12 order-2 md:order-3 ${!mounted ? "opacity-0" : ""}`}
-              onClick={toggleTheme}
-              suppressHydrationWarning
+        <ul className="flex flex-col px-6 py-4">
+          {links.map((l, i) => (
+            <li
+              key={l.href}
+              style={{ transitionDelay: open ? `${80 + i * 50}ms` : "0ms" }}
+              className={`transition duration-500 ease-out-expo ${open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
             >
-              {mounted && resolvedTheme === "light" ? sunIcon : moonIcon}
-            </button>
-          </div>
-        </div>
-        <div className="max-w-5xl block md:hidden mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/">
-              <span className="text-2xl text-black dark:text-slate-200 font-semibold cursor-pointer nav-link">
-                <Image
-                  src="/favicon.ico"
-                  width={25}
-                  height={25}
-                  alt="logo"
-                />
-              </span>
-            </Link>
-            <button
-              aria-label="Toggle Dark Mode"
-              type="button"
-              className={`p-3 h-12 w-12 ${!mounted ? "opacity-0" : ""}`}
-              onClick={toggleTheme}
-              suppressHydrationWarning
-            >
-              {mounted && resolvedTheme === "light" ? sunIcon : moonIcon}
-            </button>
-            <button onClick={toggleNav}>
-              {isNavOpen ? (
-                <svg
-                  fill="#000000"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  viewBox="0 0 30 30"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M 7 4 C 6.744125 4 6.4879687 4.0974687 6.2929688 4.2929688 L 4.2929688 6.2929688 C 3.9019687 6.6839688 3.9019687 7.3170313 4.2929688 7.7070312 L 11.585938 15 L 4.2929688 22.292969 C 3.9019687 22.683969 3.9019687 23.317031 4.2929688 23.707031 L 6.2929688 25.707031 C 6.6839688 26.098031 7.3170313 26.098031 7.7070312 25.707031 L 15 18.414062 L 22.292969 25.707031 C 22.682969 26.098031 23.317031 26.098031 23.707031 25.707031 L 25.707031 23.707031 C 26.098031 23.316031 26.098031 22.682969 25.707031 22.292969 L 18.414062 15 L 25.707031 7.7070312 C 26.098031 7.3170312 26.098031 6.6829688 25.707031 6.2929688 L 23.707031 4.2929688 C 23.316031 3.9019687 22.682969 3.9019687 22.292969 4.2929688 L 15 11.585938 L 7.7070312 4.2929688 C 7.5115312 4.0974687 7.255875 4 7 4 z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-6 h-6"
-                  viewBox="0 0 15 15"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-        {isNavOpen ? (
-          <div className="flex flex-col absolute w-full text-black dark:text-slate-200 md:hidden gap-4 text-center py-4 text-2xl border-y border-black dark:border-slate-600 bg-[#ebebeb] dark:bg-slate-800">
-            <Link href="/">
-              <span className="nav-link">Home</span>
-            </Link>
-            <Link href="/about">
-              <span className="nav-link">About</span>
-            </Link>
-            <Link href="/projects">
-              <span className="nav-link">Projects</span>
-            </Link>
-          </div>
-        ) : (
-          <span className="hidden"></span>
-        )}
+              <Link
+                href={l.href}
+                onClick={() => setOpen(false)}
+                aria-current={pathname === l.href ? "page" : undefined}
+                className={`block py-3 text-3xl font-medium tracking-tight ${pathname === l.href ? "text-accent" : ""}`}
+              >
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </>
+    </header>
   );
 }

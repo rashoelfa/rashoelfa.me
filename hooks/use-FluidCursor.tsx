@@ -7,7 +7,7 @@ const useFluidCursor = () => {
 
   let config = {
     SIM_RESOLUTION: 128,
-    DYE_RESOLUTION: 1440,
+    DYE_RESOLUTION: 720,
     CAPTURE_RESOLUTION: 512,
     DENSITY_DISSIPATION: 3.5,
     VELOCITY_DISSIPATION: 2,
@@ -17,7 +17,7 @@ const useFluidCursor = () => {
     SPLAT_RADIUS: 0.2,
     SPLAT_FORCE: 6000,
     SHADING: true,
-    COLOR_UPDATE_SPEED: 10,
+    COLOR_UPDATE_SPEED: 2,
     PAUSED: false,
     BACK_COLOR: { r: 0.5, g: 0, b: 0 },
     TRANSPARENT: true,
@@ -33,7 +33,7 @@ const useFluidCursor = () => {
     this.deltaY = 0;
     this.down = false;
     this.moved = false;
-    this.color = [0, 0, 0];
+    this.color = generateColor();
   }
 
   const pointers = [];
@@ -902,16 +902,28 @@ const useFluidCursor = () => {
 
   let lastUpdateTime = Date.now();
   let colorUpdateTimer = 0.0;
+  // The sim only runs while there is recent input; dye has fully dissipated well before IDLE_MS.
+  const IDLE_MS = 4000;
+  let running = false;
+  let lastInputTime = 0;
+
+  function wake() {
+    lastInputTime = Date.now();
+    if (running) return;
+    running = true;
+    lastUpdateTime = Date.now();
+    requestAnimationFrame(update);
+  }
 
   function update() {
     const dt = calcDeltaTime();
-    // console.log(dt)
     if (resizeCanvas()) initFramebuffers();
     updateColors(dt);
     applyInputs();
     step(dt);
     render(null);
-    requestAnimationFrame(update);
+    if (Date.now() - lastInputTime < IDLE_MS) requestAnimationFrame(update);
+    else running = false;
   }
 
   function calcDeltaTime() {
@@ -1134,19 +1146,6 @@ const useFluidCursor = () => {
     clickSplat(pointer);
   });
 
-  document.body.addEventListener("mousemove", function handleFirstMouseMove(e) {
-    let pointer = pointers[0];
-    let posX = scaleByPixelRatio(e.clientX);
-    let posY = scaleByPixelRatio(e.clientY);
-    let color = generateColor();
-
-    update();
-    updatePointerMoveData(pointer, posX, posY, color);
-
-    // Remove this event listener after the first mousemove event
-    document.body.removeEventListener("mousemove", handleFirstMouseMove);
-  });
-
   window.addEventListener("mousemove", (e) => {
     let pointer = pointers[0];
     let posX = scaleByPixelRatio(e.clientX);
@@ -1155,25 +1154,6 @@ const useFluidCursor = () => {
 
     updatePointerMoveData(pointer, posX, posY, color);
   });
-
-  document.body.addEventListener(
-    "touchstart",
-    function handleFirstTouchStart(e) {
-      const touches = e.targetTouches;
-      let pointer = pointers[0];
-
-      for (let i = 0; i < touches.length; i++) {
-        let posX = scaleByPixelRatio(touches[i].clientX);
-        let posY = scaleByPixelRatio(touches[i].clientY);
-
-        update();
-        updatePointerDownData(pointer, touches[i].identifier, posX, posY);
-      }
-
-      // Remove this event listener after the first touchstart event
-      document.body.removeEventListener("touchstart", handleFirstTouchStart);
-    }
-  );
 
   window.addEventListener("touchstart", (e) => {
     const touches = e.targetTouches;
@@ -1209,6 +1189,7 @@ const useFluidCursor = () => {
   });
 
   function updatePointerDownData(pointer, id, posX, posY) {
+    wake();
     pointer.id = id;
     pointer.down = true;
     pointer.moved = false;
@@ -1222,6 +1203,7 @@ const useFluidCursor = () => {
   }
 
   function updatePointerMoveData(pointer, posX, posY, color) {
+    wake();
     // pointer.down = false;
     pointer.prevTexcoordX = pointer.texcoordX;
     pointer.prevTexcoordY = pointer.texcoordY;
@@ -1250,8 +1232,9 @@ const useFluidCursor = () => {
     return delta;
   }
 
+  // Single accent hue (matches --accent) with slight jitter so the trail still has depth.
   function generateColor() {
-    let c = HSVtoRGB(Math.random(), 1.0, 1.0);
+    let c = HSVtoRGB(0.055 + (Math.random() - 0.5) * 0.04, 0.8, 1.0);
     c.r *= 0.15;
     c.g *= 0.15;
     c.b *= 0.15;

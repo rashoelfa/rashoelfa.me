@@ -7,34 +7,34 @@ export default function ProfileCard() {
     <div>
       <div>
         <Image
-          className="rounded-t-md"
+          className="aspect-[4/1] w-full object-cover"
           src="/assets/image/header.jpeg"
           width={896}
           height={224}
           alt="header picture"
         />
-        <div className="relative bottom-24 z-2 mx-4 -mb-24">
+        <div className="relative -mt-16 px-6 sm:-mt-20">
           <Image
-            className="rounded-full border-2 border-white border-solid"
+            className="h-32 w-32 rounded-[28px] object-cover ring-4 ring-paper sm:h-36 sm:w-36"
             src="/assets/image/profilephoto.jpeg"
             width={150}
             height={150}
             alt="profile picture"
           />
         </div>
-        <div className="relative mx-2">
-          <h1 className="text-2xl text-black font-bold dark:text-slate-200 px-4">
+        <div className="px-6 pt-5">
+          <h1 className="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
             Rasyidana Sulthan Fathansyah
           </h1>
-          <p className="text-lg text-black dark:text-slate-200 px-4">
+          <p className="mt-1 text-lg text-muted">
             Backend Developer
           </p>
         </div>
-        <div className="mx-6 my-4 z-10">
+        <div className="flex flex-wrap gap-3 px-6 pb-6 pt-6">
           <Link
             href="/assets/files/cv.pdf"
             download
-            className="relative text-black bg-[#ebebeb] hover:bg-[#ebebeb]/90 border border-black dark:border-slate-600 border-solid font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#ebebeb]/30 mr-2 mb-2"
+            className="btn-primary"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export default function ProfileCard() {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="mr-2 -ml-1 w-4 h-4"
+              className="h-4 w-4"
             >
               <path
                 strokeLinecap="round"
@@ -57,10 +57,10 @@ export default function ProfileCard() {
             href="https://github.com/rashoelfa"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative text-white bg-[#24292F] hover:bg-[#24292F]/90 border dark:border-slate-600 border-solid font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+            className="btn-ghost"
           >
             <svg
-              className="mr-2 -ml-1 w-4 h-4"
+              className="h-4 w-4"
               aria-hidden="true"
               data-prefix="fab"
               data-icon="github"
@@ -80,10 +80,10 @@ export default function ProfileCard() {
             href="https://www.linkedin.com/in/rasyidana/"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative text-white bg-[#0A66C2] hover:bg-[#0A66C2]/90 border dark:border-slate-600 border-solid font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#0A66C2]/30 mr-2 mb-2"
+            className="btn-ghost"
           >
             <svg
-              className="mr-2 -ml-1 w-4 h-4 fill-current"
+              className="h-4 w-4 fill-current"
               role="img"
               viewBox="0 0 256 256"
               xmlns="http://www.w3.org/2000/svg"
